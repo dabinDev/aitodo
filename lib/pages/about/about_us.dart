@@ -4,13 +4,17 @@ import 'package:flutter_app/utils/app_util.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+/// @author AI Todo Team
+/// @description 关于我们页面类
 class AboutUsScreen extends StatelessWidget {
+  /// 构建关于我们页面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "About",
+          "关于我们",
           key: ValueKey(AboutUsKeys.TITLE_ABOUT),
         ),
       ),
@@ -25,17 +29,17 @@ class AboutUsScreen extends StatelessWidget {
                     ListTile(
                         leading: Icon(Icons.bug_report, color: Colors.black),
                         title: Text(
-                          "Report an Issue",
+                          "报告问题",
                           key: ValueKey(AboutUsKeys.TITLE_REPORT),
                         ),
                         subtitle: Text(
-                          "Having an issue ? Report it here",
+                          "遇到问题？在这里报告",
                           key: ValueKey(AboutUsKeys.SUBTITLE_REPORT),
                         ),
                         onTap: () => launchURL(ISSUE_URL)),
                     ListTile(
                       leading: Icon(Icons.update, color: Colors.black),
-                      title: Text("Version"),
+                      title: Text("版本"),
                       subtitle: FutureBuilder<PackageInfo>(
                         future: PackageInfo.fromPlatform(),
                         builder: (context, snapshot) {
@@ -56,7 +60,7 @@ class AboutUsScreen extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(top: 16.0, left: 16.0),
-                      child: Text("Author",
+                      child: Text("开发团队",
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -65,24 +69,24 @@ class AboutUsScreen extends StatelessWidget {
                     ListTile(
                       leading: Icon(Icons.perm_identity, color: Colors.black),
                       title: Text(
-                        "Burhanuddin Rashid",
+                        "AI Todo Team",
                         key: ValueKey(AboutUsKeys.AUTHOR_NAME),
                       ),
                       subtitle: Text(
-                        "burhanrashid52",
+                        "aitodo",
                         key: ValueKey(AboutUsKeys.AUTHOR_USERNAME),
                       ),
                       onTap: () => launchURL(GITHUB_URL),
                     ),
                     ListTile(
                         leading: Icon(Icons.bug_report, color: Colors.black),
-                        title: Text("Fork on Github"),
+                        title: Text("在 Github 上查看"),
                         onTap: () => launchURL(PROJECT_URL)),
                     ListTile(
                         leading: Icon(Icons.email, color: Colors.black),
-                        title: Text("Send an Email"),
+                        title: Text("发送邮件"),
                         subtitle: Text(
-                          "burhanrashid5253@gmail.com",
+                          "support@aitodo.com",
                           key: ValueKey(AboutUsKeys.AUTHOR_EMAIL),
                         ),
                         onTap: () => launchURL(EMAIL_URL)),
@@ -95,7 +99,7 @@ class AboutUsScreen extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(top: 16.0, left: 16.0),
-                      child: Text("Ask Question ?",
+                      child: Text("有问题？",
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -132,7 +136,7 @@ class AboutUsScreen extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(top: 16.0, left: 16.0),
-                      child: Text("Apache Licensee",
+                      child: Text("开源协议",
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -141,10 +145,10 @@ class AboutUsScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ListTile(
-                        subtitle: Text("Copyright 2020 Burhanuddin Rashid"
-                            '\n\nLicensed under the Apache License, Version 2.0 (the "License") you may not use this file except in compliance with the License. You may obtain a copy of the License at'
+                        subtitle: Text("版权所有 2024 AI Todo Team"
+                            '\n\n本软件基于 Apache License 2.0 协议授权。除非符合许可证要求，否则您不得使用此文件。您可以在以下位置获取许可证副本：'
                             "\n\n\nhttp://www.apache.org/licenses/LICENSE-2.0"
-                            '\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.'),
+                            '\n\n除非适用法律要求或书面同意，否则根据许可证分发的软件是基于"按原样"提供的，没有任何明示或暗示的保证或条件。有关许可证下的特定语言管理权限和限制，请参阅许可证。'),
                       ),
                     ),
                   ],

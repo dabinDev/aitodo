@@ -4,18 +4,22 @@ import 'package:flutter_app/utils/color_utils.dart';
 import 'package:flutter_app/utils/date_util.dart';
 import 'package:flutter_app/utils/app_constant.dart';
 
+/// @author AI Todo Team
+/// @description 已完成任务行组件类
 class TaskCompletedRow extends StatelessWidget {
   final Tasks tasks;
-  static final dateLabel = "Date";
+  static final dateLabel = "日期";
   final List<String> labelNames = [];
 
   TaskCompletedRow(this.tasks);
 
+  /// 构建已完成任务行组件
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        //TODO to click something
+        //TODO: 点击处理
       },
       child: Column(
         children: <Widget>[
@@ -103,6 +107,9 @@ class TaskCompletedRow extends StatelessWidget {
     );
   }
 
+  /// 获取标签组件
+  /// @param labelList 标签列表
+  /// @return 标签组件
   Widget getLabels(List<String> labelList) {
     if (labelList.isEmpty) {
       return Container();

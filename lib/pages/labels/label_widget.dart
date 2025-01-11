@@ -9,7 +9,11 @@ import 'package:flutter_app/pages/labels/label_bloc.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
+/// @author AI Todo Team
+/// @description 标签页面类
 class LabelPage extends StatelessWidget {
+  /// 构建标签页面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     LabelBloc labelBloc = BlocProvider.of(context);
@@ -28,22 +32,29 @@ class LabelPage extends StatelessWidget {
   }
 }
 
+/// @author AI Todo Team
+/// @description 标签展开列表组件类
 class LabelExpansionTileWidget extends StatelessWidget {
   final List<Label> _labels;
 
   LabelExpansionTileWidget(this._labels);
 
+  /// 构建标签展开列表
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       key: ValueKey(SideDrawerKeys.DRAWER_LABELS),
       leading: Icon(Icons.label),
-      title: Text("Labels",
+      title: Text("标签列表",
           style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
       children: buildLabels(context),
     );
   }
 
+  /// 构建标签列表
+  /// @param context 构建上下文
+  /// @return 标签列表组件
   List<Widget> buildLabels(BuildContext context) {
     final _labelBloc = context.bloc<LabelBloc>();
     List<Widget> projectWidgetList = [];
@@ -51,7 +62,7 @@ class LabelExpansionTileWidget extends StatelessWidget {
     projectWidgetList.add(ListTile(
         leading: Icon(Icons.add),
         title: Text(
-          "Add Label",
+          "添加标签",
           key: ValueKey(SideDrawerKeys.ADD_LABEL),
         ),
         onTap: () async {
@@ -62,11 +73,15 @@ class LabelExpansionTileWidget extends StatelessWidget {
   }
 }
 
+/// @author AI Todo Team
+/// @description 标签行组件类
 class LabelRow extends StatelessWidget {
   final Label label;
 
   LabelRow(this.label);
 
+  /// 构建标签行
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     final homeBloc = context.bloc<HomeBloc>();
@@ -99,7 +114,11 @@ class LabelRow extends StatelessWidget {
   }
 }
 
+/// @author AI Todo Team
+/// @description 添加标签页面包装类
 class AddLabelPage extends StatelessWidget {
+  /// 构建添加标签页面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

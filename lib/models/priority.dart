@@ -9,4 +9,4 @@ enum Status {
   PRIORITY_4,
 }
 
-var priorityText = ["Priority 1", "Priority 2", "Priority 3", "Priority 4"];
+var priorityText = ["优先级 1", "优先级 2", "优先级 3", "优先级 4"];

@@ -12,10 +12,14 @@ import 'package:flutter_app/pages/tasks/task_widgets.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
+/// @author AI Todo Team
+/// @description 主页面类，显示任务列表和相关操作
 class HomePage extends StatelessWidget {
   final TaskBloc _taskBloc = TaskBloc(TaskDB.get());
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  /// 构建主页面界面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     final bool isWiderScreen = context.isWiderScreen();
@@ -31,7 +35,7 @@ class HomePage extends StatelessWidget {
       key: _scaffoldKey,
       appBar: AppBar(
         title: StreamBuilder<String>(
-            initialData: 'Today',
+            initialData: '今天',
             stream: homeBloc.title,
             builder: (context, snapshot) {
               return Text(
@@ -70,8 +74,9 @@ class HomePage extends StatelessWidget {
     );
   }
 
-// This menu button widget updates a _selection field (of type WhyFarther,
-// not shown here).
+  /// 构建弹出菜单
+  /// @param context 构建上下文
+  /// @return 弹出菜单组件
   Widget buildPopupMenu(BuildContext context) {
     return PopupMenuButton<MenuItem>(
       icon: Icon(Icons.adaptive.more),
@@ -89,7 +94,7 @@ class HomePage extends StatelessWidget {
         const PopupMenuItem<MenuItem>(
           value: MenuItem.TASK_COMPLETED,
           child: const Text(
-            'Completed Tasks',
+            '已完成任务',
             key: ValueKey(CompletedTaskPageKeys.COMPLETED_TASKS),
           ),
         )
@@ -98,5 +103,5 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// This is the type used by the popup menu below.
+/// 菜单项枚举
 enum MenuItem { TASK_COMPLETED }

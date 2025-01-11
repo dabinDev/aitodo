@@ -11,10 +11,14 @@ import 'package:flutter_app/utils/color_utils.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
+/// @author AI Todo Team
+/// @description 添加标签页面类
 class AddLabel extends StatelessWidget {
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
   final expansionTile = GlobalKey<CollapsibleExpansionTileState>();
 
+  /// 构建添加标签页面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     late ColorPalette currentSelectedPalette;
@@ -23,7 +27,7 @@ class AddLabel extends StatelessWidget {
     scheduleMicrotask(() {
       labelBloc.labelsExist.listen((isExist) {
         if (isExist) {
-          showSnackbar(context, "Label already exists");
+          showSnackbar(context, "标签已存在");
         } else {
           context.safePop();
           if (context.isWiderScreen()) {
@@ -36,7 +40,7 @@ class AddLabel extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add Label",
+          "添加标签",
           key: ValueKey(AddLabelKeys.TITLE_ADD_LABEL),
         ),
       ),
@@ -63,10 +67,10 @@ class AddLabel extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 key: ValueKey(AddLabelKeys.TEXT_FORM_LABEL_NAME),
-                decoration: InputDecoration(hintText: "Label Name"),
+                decoration: InputDecoration(hintText: "标签名称"),
                 maxLength: 20,
                 validator: (value) {
-                  return value!.isEmpty ? "Label Cannot be empty" : null;
+                  return value!.isEmpty ? "标签名称不能为空" : null;
                 },
                 onSaved: (value) {
                   labelName = value!;
@@ -79,7 +83,7 @@ class AddLabel extends StatelessWidget {
             padding: const EdgeInsets.only(top: 4.0),
             child: StreamBuilder<ColorPalette>(
               stream: labelBloc.colorSelection,
-              initialData: ColorPalette("Grey", Colors.grey.value),
+              initialData: ColorPalette("灰色", Colors.grey.value),
               builder: (context, snapshot) {
                 currentSelectedPalette = snapshot.data!;
                 return CollapsibleExpansionTile(
@@ -100,6 +104,9 @@ class AddLabel extends StatelessWidget {
     );
   }
 
+  /// 构建颜色选择列表
+  /// @param labelBloc 标签bloc
+  /// @return 颜色选择列表组件
   List<Widget> buildMaterialColors(LabelBloc labelBloc) {
     List<Widget> projectWidgetList = [];
     colorsPalettes.forEach((colors) {

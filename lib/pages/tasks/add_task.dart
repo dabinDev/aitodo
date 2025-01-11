@@ -18,16 +18,20 @@ import 'package:flutter_app/utils/extension.dart';
 
 import 'bloc/task_bloc.dart';
 
+/// @author AI Todo Team
+/// @description 添加任务界面类
 class AddTaskScreen extends StatelessWidget {
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
 
+  /// 构建添加任务界面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     AddTaskBloc createTaskBloc = BlocProvider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add Task",
+          "添加任务",
           key: ValueKey(AddTaskKeys.ADD_TASK_TITLE),
         ),
       ),
@@ -39,7 +43,7 @@ class AddTaskScreen extends StatelessWidget {
               child: TextFormField(
                   key: ValueKey(AddTaskKeys.ADD_TITLE),
                   validator: (value) {
-                    var msg = value!.isEmpty ? "Title Cannot be Empty" : null;
+                    var msg = value!.isEmpty ? "标题不能为空" : null;
                     return msg;
                   },
                   onSaved: (value) {
@@ -47,14 +51,14 @@ class AddTaskScreen extends StatelessWidget {
                   },
                   maxLines: null,
                   keyboardType: TextInputType.multiline,
-                  decoration: InputDecoration(hintText: "Title")),
+                  decoration: InputDecoration(hintText: "标题")),
             ),
             key: _formState,
           ),
           ListTile(
             key: ValueKey("addProject"),
             leading: Icon(Icons.book),
-            title: Text("Project"),
+            title: Text("项目"),
             subtitle: StreamBuilder<Project>(
               stream: createTaskBloc.selectedProject,
               initialData: Project.getInbox(),
@@ -66,7 +70,7 @@ class AddTaskScreen extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.calendar_today),
-            title: Text("Due Date"),
+            title: Text("截止日期"),
             subtitle: StreamBuilder<int>(
               stream: createTaskBloc.dueDateSelected,
               initialData: DateTime.now().millisecondsSinceEpoch,
@@ -79,7 +83,7 @@ class AddTaskScreen extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.flag),
-            title: Text("Priority"),
+            title: Text("优先级"),
             subtitle: StreamBuilder<Status>(
               stream: createTaskBloc.prioritySelected,
               initialData: Status.PRIORITY_4,
@@ -92,10 +96,10 @@ class AddTaskScreen extends StatelessWidget {
           ),
           ListTile(
               leading: Icon(Icons.label),
-              title: Text("Labels"),
+              title: Text("标签"),
               subtitle: StreamBuilder<String>(
                 stream: createTaskBloc.labelSelection,
-                initialData: "No Labels",
+                initialData: "无标签",
                 builder: (context, snapshot) => Text(snapshot.data!),
               ),
               onTap: () {
@@ -103,18 +107,18 @@ class AddTaskScreen extends StatelessWidget {
               }),
           ListTile(
             leading: Icon(Icons.mode_comment),
-            title: Text("Comments"),
-            subtitle: Text("No Comments"),
+            title: Text("备注"),
+            subtitle: Text("无备注"),
             onTap: () {
-              showSnackbar(context, "Coming Soon");
+              showSnackbar(context, "即将推出");
             },
           ),
           ListTile(
             leading: Icon(Icons.timer),
-            title: Text("Reminder"),
-            subtitle: Text("No Reminder"),
+            title: Text("提醒"),
+            subtitle: Text("无提醒"),
             onTap: () {
-              showSnackbar(context, "Coming Soon");
+              showSnackbar(context, "即将推出");
             },
           )
         ],
@@ -127,9 +131,7 @@ class AddTaskScreen extends StatelessWidget {
               _formState.currentState!.save();
               createTaskBloc.createTask().listen((value) {
                 if (context.isWiderScreen()) {
-                  context
-                      .bloc<HomeBloc>()
-                      .applyFilter("Today", Filter.byToday());
+                  context.bloc<HomeBloc>().applyFilter("今天", Filter.byToday());
                 } else {
                   context.safePop();
                 }
@@ -139,6 +141,8 @@ class AddTaskScreen extends StatelessWidget {
     );
   }
 
+  /// 选择日期对话框
+  /// @param context 上下文
   Future<Null> _selectDate(BuildContext context) async {
     AddTaskBloc createTaskBloc = BlocProvider.of(context);
     final DateTime? picked = await showDatePicker(
@@ -152,13 +156,16 @@ class AddTaskScreen extends StatelessWidget {
     }
   }
 
+  /// 显示优先级选择对话框
+  /// @param createTaskBloc 任务创建bloc
+  /// @param context 上下文
   Future<Status?> _showPriorityDialog(
       AddTaskBloc createTaskBloc, BuildContext context) async {
     return await showDialog<Status>(
         context: context,
         builder: (BuildContext dialogContext) {
           return SimpleDialog(
-            title: const Text('Select Priority'),
+            title: const Text('选择优先级'),
             children: <Widget>[
               buildContainer(context, Status.PRIORITY_1),
               buildContainer(context, Status.PRIORITY_2),
@@ -169,6 +176,9 @@ class AddTaskScreen extends StatelessWidget {
         });
   }
 
+  /// 显示项目选择对话框
+  /// @param createTaskBloc 任务创建bloc
+  /// @param context 上下文
   Future<Status?> _showProjectsDialog(
       AddTaskBloc createTaskBloc, BuildContext context) async {
     return showDialog<Status>(
@@ -179,7 +189,7 @@ class AddTaskScreen extends StatelessWidget {
               initialData: <Project>[],
               builder: (context, snapshot) {
                 return SimpleDialog(
-                  title: const Text('Select Project'),
+                  title: const Text('选择项目'),
                   children:
                       buildProjects(createTaskBloc, context, snapshot.data!),
                 );
@@ -187,6 +197,8 @@ class AddTaskScreen extends StatelessWidget {
         });
   }
 
+  /// 显示标签选择对话框
+  /// @param context 上下文
   Future<Status?> _showLabelsDialog(BuildContext context) async {
     AddTaskBloc createTaskBloc = BlocProvider.of(context);
     return showDialog<Status>(
@@ -197,7 +209,7 @@ class AddTaskScreen extends StatelessWidget {
               initialData: <Label>[],
               builder: (context, snapshot) {
                 return SimpleDialog(
-                  title: const Text('Select Labels'),
+                  title: const Text('选择标签'),
                   children:
                       buildLabels(createTaskBloc, context, snapshot.data!),
                 );
@@ -205,6 +217,10 @@ class AddTaskScreen extends StatelessWidget {
         });
   }
 
+  /// 构建项目列表
+  /// @param createTaskBloc 任务创建bloc
+  /// @param context 上下文
+  /// @param projectList 项目列表
   List<Widget> buildProjects(
     AddTaskBloc createTaskBloc,
     BuildContext context,
@@ -230,6 +246,10 @@ class AddTaskScreen extends StatelessWidget {
     return projects;
   }
 
+  /// 构建标签列表
+  /// @param createTaskBloc 任务创建bloc
+  /// @param context 上下文
+  /// @param labelList 标签列表
   List<Widget> buildLabels(
     AddTaskBloc createTaskBloc,
     BuildContext context,

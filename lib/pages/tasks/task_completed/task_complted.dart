@@ -5,9 +5,13 @@ import 'package:flutter_app/pages/tasks/models/tasks.dart';
 import 'package:flutter_app/pages/tasks/task_db.dart';
 import 'package:flutter_app/pages/tasks/task_completed/row_task_completed.dart';
 
+/// @author AI Todo Team
+/// @description 已完成任务页面类
 class TaskCompletedPage extends StatelessWidget {
   final TaskBloc _taskBloc = TaskBloc(TaskDB.get());
 
+  /// 构建已完成任务页面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     _taskBloc.filterByStatus(TaskStatus.COMPLETE);
@@ -15,7 +19,7 @@ class TaskCompletedPage extends StatelessWidget {
       bloc: _taskBloc,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Task Completed"),
+          title: Text("已完成任务"),
         ),
         body: StreamBuilder<List<Tasks>>(
             stream: _taskBloc.tasks,
@@ -36,15 +40,16 @@ class TaskCompletedPage extends StatelessWidget {
                                 _taskBloc.updateStatus(
                                     taskID, TaskStatus.PENDING);
                                 SnackBar snackbar =
-                                    SnackBar(content: Text("Task Undo"));
-                                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                                    SnackBar(content: Text("任务已撤销"));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackbar);
                               }
                             },
                             secondaryBackground: Container(
                               color: Colors.grey,
                               child: Align(
                                 alignment: Alignment(0.95, 0.0),
-                                child: Text("UNDO",
+                                child: Text("撤销",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold)),

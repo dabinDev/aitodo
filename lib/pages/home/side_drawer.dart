@@ -13,7 +13,11 @@ import 'package:flutter_app/pages/projects/project_widget.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
+/// @author AI Todo Team
+/// @description 侧边栏组件类
 class SideDrawer extends StatelessWidget {
+  /// 构建侧边栏界面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     HomeBloc homeBloc = BlocProvider.of(context);
@@ -22,8 +26,8 @@ class SideDrawer extends StatelessWidget {
         padding: EdgeInsets.all(0.0),
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text("Burhanuddin Rashid"),
-            accountEmail: Text("burhanrashid5253@gmail.com"),
+            accountName: Text("AI Todo Team"),
+            accountEmail: Text("support@aitodo.com"),
             otherAccountsPictures: <Widget>[
               IconButton(
                   icon: Icon(
@@ -44,7 +48,7 @@ class SideDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.inbox),
               title: Text(
-                "Inbox",
+                "收件箱",
                 key: ValueKey(SideDrawerKeys.INBOX),
               ),
               onTap: () {
@@ -55,22 +59,22 @@ class SideDrawer extends StatelessWidget {
               }),
           ListTile(
               onTap: () {
-                homeBloc.applyFilter("Today", Filter.byToday());
+                homeBloc.applyFilter("今天", Filter.byToday());
                 context.safePop();
               },
               leading: Icon(Icons.calendar_today),
               title: Text(
-                "Today",
+                "今天",
                 key: ValueKey(SideDrawerKeys.TODAY),
               )),
           ListTile(
             onTap: () {
-              homeBloc.applyFilter("Next 7 Days", Filter.byNextWeek());
+              homeBloc.applyFilter("未来7天", Filter.byNextWeek());
               context.safePop();
             },
             leading: Icon(Icons.calendar_today),
             title: Text(
-              "Next 7 Days",
+              "未来7天",
               key: ValueKey(SideDrawerKeys.NEXT_7_DAYS),
             ),
           ),

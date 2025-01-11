@@ -9,7 +9,11 @@ import 'package:flutter_app/pages/tasks/bloc/task_bloc.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
+/// @author AI Todo Team
+/// @description 项目页面类
 class ProjectPage extends StatelessWidget {
+  /// 构建项目页面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     ProjectBloc projectBloc = BlocProvider.of<ProjectBloc>(context);
@@ -28,29 +32,36 @@ class ProjectPage extends StatelessWidget {
   }
 }
 
+/// @author AI Todo Team
+/// @description 项目展开列表组件类
 class ProjectExpansionTileWidget extends StatelessWidget {
   final List<Project> _projects;
 
   ProjectExpansionTileWidget(this._projects);
 
+  /// 构建项目展开列表
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       key: ValueKey(SideDrawerKeys.DRAWER_PROJECTS),
       leading: Icon(Icons.book),
-      title: Text("Projects",
+      title: Text("项目列表",
           style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
       children: buildProjects(context),
     );
   }
 
+  /// 构建项目列表
+  /// @param context 构建上下文
+  /// @return 项目列表组件
   List<Widget> buildProjects(BuildContext context) {
     List<Widget> projectWidgetList = [];
     _projects.forEach((project) => projectWidgetList.add(ProjectRow(project)));
     projectWidgetList.add(ListTile(
       key: ValueKey(SideDrawerKeys.ADD_PROJECT),
       leading: Icon(Icons.add),
-      title: Text("Add Project"),
+      title: Text("添加项目"),
       onTap: () async {
         await context.adaptiveNavigate(SCREEN.ADD_PROJECT, AddProjectPage());
         context.bloc<ProjectBloc>().refresh();
@@ -60,11 +71,15 @@ class ProjectExpansionTileWidget extends StatelessWidget {
   }
 }
 
+/// @author AI Todo Team
+/// @description 项目行组件类
 class ProjectRow extends StatelessWidget {
   final Project project;
 
   ProjectRow(this.project);
 
+  /// 构建项目行
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     HomeBloc homeBloc = BlocProvider.of(context);
@@ -95,7 +110,11 @@ class ProjectRow extends StatelessWidget {
   }
 }
 
+/// @author AI Todo Team
+/// @description 添加项目页面包装类
 class AddProjectPage extends StatelessWidget {
+  /// 构建添加项目页面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

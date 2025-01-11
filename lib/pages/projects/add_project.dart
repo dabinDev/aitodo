@@ -8,10 +8,14 @@ import 'package:flutter_app/utils/color_utils.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
+/// @author AI Todo Team
+/// @description 添加项目页面类
 class AddProject extends StatelessWidget {
   final expansionTile = GlobalKey<CollapsibleExpansionTileState>();
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
 
+  /// 构建添加项目页面
+  /// @param context 构建上下文
   @override
   Widget build(BuildContext context) {
     ProjectBloc _projectBloc = BlocProvider.of(context);
@@ -20,7 +24,7 @@ class AddProject extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add Project",
+          "添加项目",
           key: ValueKey(AddProjectKeys.TITLE_ADD_PROJECT),
         ),
       ),
@@ -52,10 +56,10 @@ class AddProject extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 key: ValueKey(AddProjectKeys.TEXT_FORM_PROJECT_NAME),
-                decoration: InputDecoration(hintText: "Project Name"),
+                decoration: InputDecoration(hintText: "项目名称"),
                 maxLength: 20,
                 validator: (value) {
-                  return value!.isEmpty ? "Project name cannot be empty" : null;
+                  return value!.isEmpty ? "项目名称不能为空" : null;
                 },
                 onSaved: (value) {
                   projectName = value!;
@@ -68,7 +72,7 @@ class AddProject extends StatelessWidget {
             padding: const EdgeInsets.only(top: 4.0),
             child: StreamBuilder<ColorPalette>(
               stream: _projectBloc.colorSelection,
-              initialData: ColorPalette("Grey", Colors.grey.value),
+              initialData: ColorPalette("灰色", Colors.grey.value),
               builder: (context, snapshot) {
                 currentSelectedPalette = snapshot.data!;
                 return CollapsibleExpansionTile(
@@ -91,6 +95,9 @@ class AddProject extends StatelessWidget {
     );
   }
 
+  /// 构建颜色选择列表
+  /// @param projectBloc 项目bloc
+  /// @return 颜色选择列表组件
   List<Widget> buildMaterialColors(ProjectBloc projectBloc) {
     List<Widget> projectWidgetList = [];
     colorsPalettes.forEach((colors) {
