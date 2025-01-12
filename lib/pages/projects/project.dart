@@ -28,7 +28,7 @@ class Project {
   Project.getInbox()
       : this.update(
             id: 1,
-            name: "Inbox",
+            name: "收件箱",
             colorName: "Grey",
             colorCode: Colors.grey.value);
 

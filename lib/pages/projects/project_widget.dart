@@ -9,7 +9,7 @@ import 'package:flutter_app/pages/tasks/bloc/task_bloc.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 项目页面类
 class ProjectPage extends StatelessWidget {
   /// 构建项目页面
@@ -32,7 +32,7 @@ class ProjectPage extends StatelessWidget {
   }
 }
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 项目展开列表组件类
 class ProjectExpansionTileWidget extends StatelessWidget {
   final List<Project> _projects;
@@ -71,7 +71,7 @@ class ProjectExpansionTileWidget extends StatelessWidget {
   }
 }
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 项目行组件类
 class ProjectRow extends StatelessWidget {
   final Project project;
@@ -110,7 +110,7 @@ class ProjectRow extends StatelessWidget {
   }
 }
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 添加项目页面包装类
 class AddProjectPage extends StatelessWidget {
   /// 构建添加项目页面

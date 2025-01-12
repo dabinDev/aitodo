@@ -1,11 +1,11 @@
 {
-    "name": "AI Todo",
-    "short_name": "AI Todo",
+    "name": "aitodo",
+    "short_name": "aitodo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "一个简单而强大的待办事项管理应用。",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

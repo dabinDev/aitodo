@@ -1,101 +1,44 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
 }
 
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
-
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
 android {
-    compileSdkVersion 34
-
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-
-    defaultConfig {
-        applicationId "ja.burhanrashid52.whattodo"
-        minSdkVersion 24 //flutter.minSdkVersion
-        targetSdkVersion 34
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
-    }
+    namespace = "com.example.aitodo"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
-    signingConfigs {
-        file(rootProject.file('key.properties')).with { propFile ->
-            if (propFile.canRead()) {
-                release {
-                    keyAlias keystoreProperties['keyAlias']
-                    keyPassword keystoreProperties['keyPassword']
-                    storeFile file(keystoreProperties['storeFile'])
-                    storePassword keystoreProperties['storePassword']
-                }
-            } else {
-                print('not signed')
-            }
-        }
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId = "com.example.aitodo"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     buildTypes {
         release {
-            file(rootProject.file('key.properties')).with { propFile ->
-                if (propFile.canRead()) {
-                    signingConfig signingConfigs.release
-                }
-            }
-
-            applicationVariants.all { variant ->
-                variant.outputs.all { output ->
-                    output.outputFileName = "app-release.apk"
-                }
-            }
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig = signingConfigs.debug
         }
-    }
-
-    buildFeatures {
-        viewBinding true
     }
 }
 
 flutter {
-    source '../..'
-}
-
-dependencies {
-    implementation 'com.android.support:support-annotations:28.0.0'
+    source = "../.."
 }

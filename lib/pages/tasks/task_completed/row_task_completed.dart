@@ -4,7 +4,7 @@ import 'package:flutter_app/utils/color_utils.dart';
 import 'package:flutter_app/utils/date_util.dart';
 import 'package:flutter_app/utils/app_constant.dart';
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 已完成任务行组件类
 class TaskCompletedRow extends StatelessWidget {
   final Tasks tasks;

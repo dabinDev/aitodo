@@ -18,7 +18,7 @@ import 'package:flutter_app/utils/extension.dart';
 
 import 'bloc/task_bloc.dart';
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 添加任务界面类
 class AddTaskScreen extends StatelessWidget {
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();

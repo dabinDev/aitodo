@@ -12,7 +12,7 @@ import 'package:flutter_app/pages/tasks/task_widgets.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 主页面类，显示任务列表和相关操作
 class HomePage extends StatelessWidget {
   final TaskBloc _taskBloc = TaskBloc(TaskDB.get());

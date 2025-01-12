@@ -13,7 +13,7 @@ import 'package:flutter_app/pages/projects/project_widget.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 侧边栏组件类
 class SideDrawer extends StatelessWidget {
   /// 构建侧边栏界面
@@ -26,8 +26,8 @@ class SideDrawer extends StatelessWidget {
         padding: EdgeInsets.all(0.0),
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text("AI Todo Team"),
-            accountEmail: Text("support@aitodo.com"),
+            accountName: Text("panglu"),
+            accountEmail: Text("panglu@gmail.com"),
             otherAccountsPictures: <Widget>[
               IconButton(
                   icon: Icon(

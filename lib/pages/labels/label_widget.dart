@@ -9,7 +9,7 @@ import 'package:flutter_app/pages/labels/label_bloc.dart';
 import 'package:flutter_app/utils/keys.dart';
 import 'package:flutter_app/utils/extension.dart';
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 标签页面类
 class LabelPage extends StatelessWidget {
   /// 构建标签页面
@@ -32,7 +32,7 @@ class LabelPage extends StatelessWidget {
   }
 }
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 标签展开列表组件类
 class LabelExpansionTileWidget extends StatelessWidget {
   final List<Label> _labels;
@@ -73,7 +73,7 @@ class LabelExpansionTileWidget extends StatelessWidget {
   }
 }
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 标签行组件类
 class LabelRow extends StatelessWidget {
   final Label label;
@@ -114,7 +114,7 @@ class LabelRow extends StatelessWidget {
   }
 }
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 添加标签页面包装类
 class AddLabelPage extends StatelessWidget {
   /// 构建添加标签页面

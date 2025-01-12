@@ -5,7 +5,7 @@ import 'package:flutter_app/pages/tasks/models/tasks.dart';
 import 'package:flutter_app/pages/tasks/task_db.dart';
 import 'package:flutter_app/pages/tasks/task_completed/row_task_completed.dart';
 
-/// @author AI Todo Team
+/// @author panglu
 /// @description 已完成任务页面类
 class TaskCompletedPage extends StatelessWidget {
   final TaskBloc _taskBloc = TaskBloc(TaskDB.get());

@@ -28,6 +28,12 @@ dev_dependencies:
   mockito: ^5.1.0
   build_runner: ^2.4.5
   package_info_plus: ^8.1.1
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/extract-task.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -48,6 +54,7 @@ flutter:
     - assets/profile_pic.jpg
     - assets/twitter_logo.png
     - assets/facebook_logo.png
+    - assets/logo/extract-task.png
     - shorebird.yaml
 
   # An image asset can refer to one or more resolution-specific "variants", see
